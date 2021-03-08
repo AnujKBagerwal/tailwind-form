@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/tailwind-form/static/css/main.b14a72c4.chunk.css",
-    "main.js": "/tailwind-form/static/js/main.501b35bd.chunk.js",
-    "main.js.map": "/tailwind-form/static/js/main.501b35bd.chunk.js.map",
+    "main.js": "/tailwind-form/static/js/main.0ef7c617.chunk.js",
+    "main.js.map": "/tailwind-form/static/js/main.0ef7c617.chunk.js.map",
     "runtime-main.js": "/tailwind-form/static/js/runtime-main.9ad15862.js",
     "runtime-main.js.map": "/tailwind-form/static/js/runtime-main.9ad15862.js.map",
     "static/js/2.f114102f.chunk.js": "/tailwind-form/static/js/2.f114102f.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.9ad15862.js",
     "static/js/2.f114102f.chunk.js",
     "static/css/main.b14a72c4.chunk.css",
-    "static/js/main.501b35bd.chunk.js"
+    "static/js/main.0ef7c617.chunk.js"
   ]
 }
