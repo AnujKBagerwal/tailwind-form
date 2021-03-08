@@ -23,21 +23,23 @@ const Modal = (props) => {
   return (
     <>
       {visible && (
-        <div className='fixed z-10 inset-0 overflow-y-auto'>
+        <div className='fixed z-10 inset-0 overflow-y-auto  bg-opacity-25 '>
           <div
             className={`flex items-center justify-center min-h-screen p-0 ${modalStyles}`}
           >
             {/* Modal Overlay */}
             <div
-              className='fixed inset-0 transition-opacity'
+              className='fixed inset-0 transition-opacity '
               aria-hidden='true'
               onClick={onClose}
             >
-              <div className='absolute inset-0 bg-secondary-base opacity-40' />
+              <div className='absolute inset-0 bg-gray-400 opacity-25' />
             </div>
             {/* Modal Body */}
             <div
-              className={`bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-5xl sm:w-full px-8 py-6 ${bodyStyles}`}
+              className={`bg-white rounded-lg overflow-hidden
+               shadow-xl transform transition-all sm:my-8 sm:align-middle
+                sm:max-w-5xl sm:w-1/2 px-8 py-6 ${bodyStyles}`}
               role='dialog'
               aria-modal='true'
               aria-labelledby='modal-headline'

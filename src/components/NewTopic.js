@@ -25,6 +25,8 @@ const NewTopic = ({ newTopicToggle, toggleNewToggle, save }) => {
     <div>
       <Modal visible={newTopicToggle} onClose={() => toggleNewToggle()}>
         <h1 className='text-2xl p-2 pb-3 pl-0'>Create New Topic</h1>
+        <hr />
+        <br />
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
