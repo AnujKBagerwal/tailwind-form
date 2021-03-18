@@ -1,5 +1,5 @@
-import { uniqueId } from "lodash";
-import React, { useState } from "react";
+import { isEmpty, uniqueId } from "lodash";
+import React, { useEffect, useState } from "react";
 import Listing from "./components/Listing";
 import Nav from "./components/Nav";
 import NewTopic from "./components/NewTopic";
@@ -19,12 +19,22 @@ const App = () => {
   const [editData, setEditData] = useState();
   const [selectComment, setSelectComment] = useState({});
   const [selectCommentFlag, setSelectCommentFlag] = useState(false);
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    let response = JSON.parse(localStorage.getItem("LoginData"));
+    if (!isEmpty(response))
+      setUserName(
+        `${response.profileObj.givenName} ${response.profileObj.familyName}`
+      );
+  }, [localStorage.getItem("LoginData")]);
 
   const Reset = () => {
     setNewTopicToggle(false);
     setEditData();
     setSelectComment({});
     setSelectCommentFlag(false);
+    setUserName("");
   };
 
   const toggleNewToggle = () => {
@@ -86,10 +96,33 @@ const App = () => {
     setNewTopicToggle(!newTopicToggle);
   };
 
+  const responseGoogle = (response) => {
+    console.log(response);
+    if (response.tokenId) {
+      localStorage.setItem("LoginData", JSON.stringify(response));
+      setUserName(
+        `${response.profileObj.givenName} ${response.profileObj.familyName}`
+      );
+    } else {
+      alert("something may wrong please try again !!");
+    }
+  };
+
+  const Logout = () => {
+    localStorage.clear();
+    Reset();
+  };
   return (
     <>
       <div className=' min-h-screen dark:bg-black transition duration-500'>
-        <Nav toggleNewToggle={() => toggleNewToggle()} Reset={() => Reset()} />
+        <Nav
+          toggleNewToggle={() => toggleNewToggle()}
+          Reset={() => Reset()}
+          responseGoogle={(res) => responseGoogle(res)}
+          userName={userName}
+          Logout={Logout}
+        />
+        <div className='absolute'></div>
         <div className='m-16 p-0'>
           {/* <h1 className='text-blue-400 dark:text-white text-5xl'>Hello</h1> */}
           {selectCommentFlag ? (

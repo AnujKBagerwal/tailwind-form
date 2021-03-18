@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
 const Listing = ({ dataList, select, EditData }) => {
   return (
-    <div>
+    <div className='mt-20'>
       <div className='flex mb-2 p-2'>
         <div className='dark:text-white'>Topic</div>
         <div className='ml-auto dark:text-white flex'>

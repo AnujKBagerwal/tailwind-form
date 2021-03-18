@@ -1,11 +1,13 @@
 import React from "react";
 import useDarkMode from "../hooks/useDarkMode";
+import { GoogleLogin } from "react-google-login";
+import { isEmpty } from "lodash";
 
-const Nav = ({ toggleNewToggle, Reset }) => {
+const Nav = ({ toggleNewToggle, Reset, responseGoogle, userName, Logout }) => {
   const [colorTheme, setTheme] = useDarkMode();
 
   return (
-    <div className='flex  absolute top-0 bg-blue-100 w-full p-3 '>
+    <div className='flex  absolute top-0 bg-blue-100 w-full p-3'>
       <div className='flex '>
         <span onClick={() => Reset()}>
           <svg
@@ -59,12 +61,62 @@ const Nav = ({ toggleNewToggle, Reset }) => {
           )}
         </span>
       </div>
-      <div
-        onClick={() => toggleNewToggle()}
-        className='ml-auto bg-gray-400 text-indigo-50 dark:text-black
+      <div className='flex ml-auto'>
+        <div
+          onClick={() => toggleNewToggle()}
+          className='bg-gray-400 text-indigo-50 dark:text-black
          dark:bg-white pl-3 pr-3 pb-0 pt-2 rounded-lg mr-3'
-      >
-        + Create New Topic
+        >
+          + Create New Topic
+        </div>
+        {!isEmpty(userName) ? (
+          <>
+            <div>
+              <svg
+                className='w-6 h-6 m-auto'
+                fill='none'
+                stroke='currentColor'
+                viewBox='0 0 24 24'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth='2'
+                  d='M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z'
+                ></path>
+              </svg>
+              {userName}
+            </div>
+            <span
+              onClick={() => Logout()}
+              className='text-center p-0 m-0 border border-white bg-gray-300'
+              style={{
+                fontSize: "7px",
+                "writing-mode": "vertical-rl",
+                "text-orientation": "upright",
+              }}
+            >
+              Logout
+            </span>
+          </>
+        ) : (
+          <div>
+            <GoogleLogin
+              clientId='522822790307-rjvps2k5ph51e137dt9euhesr8jdlh2m.apps.googleusercontent.com'
+              buttonText='Login'
+              onSuccess={(res) => {
+                responseGoogle(res);
+                console.log(
+                  "res",
+                  res.profileObj.givenName + "" + res.profileObj.familyName
+                );
+              }}
+              onFailure={(err) => console.log("err", err)}
+              cookiePolicy={"single_host_origin"}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
