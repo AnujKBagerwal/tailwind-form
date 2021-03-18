@@ -23,7 +23,7 @@ const ReplyComment = ({ data, save, closeCommentFlag }) => {
     <div>
       <div>
         <button
-          className='m-2 ml-0 bg-gray-500 p-2 text-white rounded-lg w-1/12'
+          className='m-2 ml-0 bg-gray-200 dark:bg-gray-500 p-2 dark:text-white rounded-lg w-1/12'
           type='button'
           onClick={() => {
             closeCommentFlag();
@@ -38,19 +38,19 @@ const ReplyComment = ({ data, save, closeCommentFlag }) => {
           data.catagory.map((x, index) => (
             <span
               key={index}
-              className='m-1 bg-gray-300 ml-0 pl-3 pr-3  text-gray-500 dark:text-black '
+              className='m-1 ml-0 pl-3 pr-3  text-gray-500 dark:text-yellow-300 '
             >
               {x.name}
             </span>
           ))}
       </div>
       <hr />
-      <div className='bg-gray-300'>
-        <div className='m-4'>{data.description}</div>
+      <div className='bg-gray-200 dark:bg-gray-700 h-96 m-4'>
+        <div className='p-4 dark:text-white'>{data.description}</div>
       </div>
       <div className='flex'>
         <div
-          className='flex bg-gray-300 ml-auto'
+          className='flex bg-gray-200 dark:bg-transparent dark:text-white ml-auto'
           onClick={() => setDesToggle(!desToggle)}
         >
           <div className='w-5 h-5 ml-auto  mr-2'>

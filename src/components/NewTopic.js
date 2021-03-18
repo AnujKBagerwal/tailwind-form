@@ -3,11 +3,13 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Modal from "../hooks/Modal";
 
-const NewTopic = ({ newTopicToggle, toggleNewToggle, save }) => {
+const NewTopic = ({ newTopicToggle, toggleNewToggle, save, editData }) => {
   const initialValues = {
-    title: "",
-    catagory: [],
-    description: "",
+    id: editData.id || "",
+    title: editData.title || "",
+    catagory: editData.catagory || [],
+    description: editData.description || "",
+    reply: editData.reply || [],
   };
   const validationSchema = Yup.object({
     title: Yup.string().required("Please Enter Title"),
@@ -58,6 +60,7 @@ const NewTopic = ({ newTopicToggle, toggleNewToggle, save }) => {
                     placeholder={"Select Catagory"}
                     className='w-full bg-transparent mt-2 p-2 border-gray-400 border-2'
                     defaultValue=''
+                    value={values.catagory[0]?.name}
                     onChange={(e) =>
                       setFieldValue("catagory", [{ name: e.target.value }])
                     }
